@@ -2,15 +2,15 @@ package com.blogging_apis.blog.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @Table(name="Post")
 public class Post {
 
@@ -34,4 +34,8 @@ public class Post {
 
     @ManyToOne
     private User user; //change user to some other name and check
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<>();
+
 }
